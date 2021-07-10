@@ -23,10 +23,15 @@ const { brand, darkLight } = Colors
 import { View } from 'react-native'
 
 
-const Login = () => {
+const Login = ({ navigation }) => {
 
     //useState
     const [hidePassword, setHidePassword] = useState(true)
+
+
+    const pressHandler = () => {
+        navigation.navigate('Register')
+    }
 
     return (
         <StyledContainer>
@@ -81,7 +86,7 @@ const Login = () => {
                             <Line />
                             <ExtraView>
                                 <ExtraText>Don't have an account already? </ExtraText>
-                                <TextLink>
+                                <TextLink onPress={pressHandler}>
                                     <TextLinkContent>Sign Up</TextLinkContent>
                                 </TextLink>
                             </ExtraView>
