@@ -1,16 +1,13 @@
 import styled from 'styled-components/native';
 
-import { Colors } from './colors'
-const { brand, tertiary } = Colors
-
 export const PageTitle = styled.Text`
     font-size: 30px;
     text-align: center;
     font-weight: bold;
-    color: ${brand};
+    color: lightseagreen;
     padding: 10px;
 
-    ${(props) => props.welcome && `
+    ${(props) => props.dashboard && `
         font-size: 35px;
     `}
 `;
@@ -20,9 +17,9 @@ export const SubTitle = styled.Text`
     margin-bottom: 20px;
     letter-spacing: 1px;
     font-weight: bold;
-    color: ${tertiary};
+    color: black;
 
-    ${(props) => props.welcome && `
+    ${(props) => props.dashboard && `
         margin-bottom: 5px;
         font-weight: normal;
     `}

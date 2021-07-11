@@ -3,11 +3,11 @@ import styled from 'styled-components/native';
 import { Colors } from './colors'
 const { darkLight } = Colors
 
-export const StyledFormArea = styled.View`
+export const FormArea = styled.View`
     width: 90%;
 `; 
 
-export const Line = styled.View`
+export const Division = styled.View`
     height: 1px;
     width: 100%;
     background-color: ${darkLight};

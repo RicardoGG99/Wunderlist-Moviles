@@ -8,16 +8,16 @@ import { Formik } from 'formik';
 import { Octicons, Ionicons } from '@expo/vector-icons';
 
 //styles
-import { StyledButton, StyledButtonText } from '../styles/buttons'
+import { SignButton, SignButtonText } from '../styles/buttons'
 import { Colors } from '../styles/colors'
-import { StyledContainer, InnerContainer } from '../styles/containers'
+import { WrapContainer, InnerContainer } from '../styles/containers'
 import { LeftIcon, RightIcon } from '../styles/icons'
 import { PageLogo } from '../styles/images'
-import { StyledTextInput, StyledInputLabel, MessageBox, ExtraText, TextLink, TextLinkContent } from '../styles/texts'
+import { TextInput, InputLabel, MessageBox, ExtraText, TextLink, TextLinkContent } from '../styles/texts'
 import { PageTitle, SubTitle } from '../styles/titles'
-import { StyledFormArea, Line, ExtraView } from '../styles/views'
+import { FormArea, Division, ExtraView } from '../styles/views'
 
-const { brand, darkLight } = Colors
+const { gray, darkLight } = Colors
 
 
 import { View } from 'react-native'
@@ -34,12 +34,16 @@ const Login = ({ navigation }) => {
     }
 
     return (
-        <StyledContainer>
+        <WrapContainer>
             <StatusBar style="dark" />
             <InnerContainer>
-                <PageLogo  resizeMode="cover" source={require("../assets/img1.png")} />
-                <PageTitle> Flower Crib </PageTitle>
-                <SubTitle> Account Login: </SubTitle>
+                <PageLogo  resizeMode="cover" source={require("../assets/wunderlist-logo.png")} />
+                <PageTitle> Wunderlist </PageTitle>
+                <SubTitle> Log to your Account: </SubTitle>
+
+                
+                    
+                
 
                 <Formik
                     initialValues={{username: '', password: ''}}
@@ -51,7 +55,7 @@ const Login = ({ navigation }) => {
                     
                     {
                         ({handleChange, handleBlur, handleSubmit, values}) => (
-                        <StyledFormArea>
+                        <FormArea>
                             <MyTextInput 
                                 label="Username"
                                 icon="person"
@@ -78,23 +82,23 @@ const Login = ({ navigation }) => {
                                 setHidePassword={setHidePassword}
                             />
                             <MessageBox>...</MessageBox>
-                            <StyledButton>
-                                <StyledButtonText>
-                                    Login
-                                </StyledButtonText>
-                            </StyledButton>
-                            <Line />
+                            <SignButton>
+                                <SignButtonText>
+                                    Sign In
+                                </SignButtonText>
+                            </SignButton>
+                            <Division />
                             <ExtraView>
                                 <ExtraText>Don't have an account already? </ExtraText>
                                 <TextLink onPress={pressHandler}>
                                     <TextLinkContent>Sign Up</TextLinkContent>
                                 </TextLink>
                             </ExtraView>
-                        </StyledFormArea>)  
+                        </FormArea>)  
                     }
                 </Formik>
             </InnerContainer>
-        </StyledContainer>
+        </WrapContainer>
     );
 };
 
@@ -102,14 +106,14 @@ const MyTextInput = ({label, icon, isPassword, hidePassword, setHidePassword, ..
     return (
         <View>
             <LeftIcon>
-                <Octicons name={icon} size={30} color={brand} />
+                <Octicons name={icon} size={30} color={gray} />
             </LeftIcon>
 
-            <StyledInputLabel>
+            <InputLabel>
                 {label}
-            </StyledInputLabel>
+            </InputLabel>
 
-            <StyledTextInput {...props} />
+            <TextInput {...props} />
             {isPassword && (
                 <RightIcon onPress={() => setHidePassword(!hidePassword)}>
                     <Ionicons name={hidePassword ? 'md-eye-off' : 'md-eye'} size={30} color={darkLight} />

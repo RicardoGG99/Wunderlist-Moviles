@@ -3,19 +3,19 @@ import { createAppContainer } from 'react-navigation'
 
 import Login from '../pages/Login'
 import Register from '../pages/Register'
-import Welcome from '../pages/Welcome'
+import Dashboard from '../pages/Dashboard'
 
 const screens = {
+    Dashboard: {
+        screen: Dashboard
+    },
+    
     Login: {
         screen: Login
     },
 
     Register: {
         screen: Register
-    },
-
-    Welcome: {
-        screen: Welcome
     },
 }
 

@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import { Colors } from './colors'
 const { secondary, tertiary, brand } = Colors
 
-export const StyledTextInput = styled.TextInput`
+export const TextInput = styled.TextInput`
     background-color: ${secondary};
     padding: 15px;
     padding-left: 55px;
@@ -13,10 +13,10 @@ export const StyledTextInput = styled.TextInput`
     height: 60px;
     margin-vertical: 3px;
     margin-bottom: 10px;
-    color: ${tertiary};
+    color: black;
 `;
 
-export const StyledInputLabel = styled.Text`
+export const InputLabel = styled.Text`
     color: ${tertiary};
     font-size: 13px;
     text-align: left;
@@ -40,6 +40,6 @@ export const TextLink = styled.TouchableOpacity`
 `;
 
 export const TextLinkContent = styled.Text`
-    color: ${brand};
+    color: lightseagreen;
     font-size: 15px;
 `;

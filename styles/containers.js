@@ -6,7 +6,7 @@ const { primary } = Colors
 
 const StatusBarHeight = constants.statusBarHeight
 
-export const StyledContainer = styled.View`
+export const WrapContainer = styled.View`
     flex: 1;
     padding: 25px;
     padding-top: ${StatusBarHeight + 10}px;
@@ -19,7 +19,7 @@ export const InnerContainer = styled.View`
     align-items: center;
 `;
 
-export const WelcomeContainer = styled(InnerContainer)`
+export const DashboardContainer = styled(InnerContainer)`
     padding: 25px;
     padding-top: 10px;
     justify-content: center;
