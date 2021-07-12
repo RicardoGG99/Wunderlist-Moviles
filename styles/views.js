@@ -1,22 +1,21 @@
-import styled from 'styled-components/native';
+import { StyleSheet } from "react-native"
 
-import { Colors } from './colors'
-const { darkLight } = Colors
+export const Views = StyleSheet.create({
+    FormArea: {
+        width: "90%",
+    },
 
-export const FormArea = styled.View`
-    width: 90%;
-`; 
+    Division: {
+        height: 1,
+        width: "100%",
+        backgroundColor: "#9CA3AF",
+        marginVertical: 10,
+    },
 
-export const Division = styled.View`
-    height: 1px;
-    width: 100%;
-    background-color: ${darkLight};
-    margin-vertical: 10px;
-`;
-
-export const ExtraView = styled.View`
-    justify-content: center;
-    flex-direction: row;
-    align-items: center;
-    padding: 10px;
-`;
+    ExtraView: {
+        justifyContent: "center",
+        flexDirection: "row",
+        alignItems: "center",
+        padding: 10,
+    }
+}) 

@@ -1,42 +1,51 @@
 import React from 'react';
+import { TouchableHighlight, Text, View, Image } from "react-native"
 import { StatusBar } from 'expo-status-bar';
+import { Ionicons } from '@expo/vector-icons';
+
 
 //styles
-import { SignButton, SignButtonText } from '../styles/buttons'
-import { WrapContainer, InnerContainer, DashboardContainer } from '../styles/containers'
-import { DashboradImage, Avatar } from '../styles/images'
-// import { PageTitle, SubTitle } from '../styles/titles'
-import { FormArea, Division } from '../styles/views'
+import { ButtonStyles } from '../styles/buttons'
+import { Containers } from '../styles/containers'
+import { Images } from '../styles/images'
+import { Views } from '../styles/views'
 
+//Constants declarations
+const { WrapContainer, InnerContainer, DashboardContainer } = Containers
+const { DashboardImage } = Images
+const { FormArea, Division } = Views
+const { SignOut, TaskButton, TaskText } = ButtonStyles
 
 const Dashboard = ({ navigation }) => {
 
-    const pressHandler = () => {
+    const logOut = () => {
         navigation.navigate('Login')
     }
 
+    // const createTask = () => {
+    //     navigation.navigate('CreateTask')
+    // }
+
     return (
-        <WrapContainer>
+        <View style={WrapContainer}>
             <StatusBar style="light" />
-            <InnerContainer>
-                <DashboardContainer>
-                    <DashboradImage resizeMode="" source={require("../assets/wunderlist-logo.png")} />
-                        {/* <PageTitle dashboard={true}> Welcome Buddy </PageTitle>
-                        <SubTitle dashboard={true}> Olga Simpson </SubTitle>
-                        <SubTitle dashboard={true}> olga123 </SubTitle>
-                        <SubTitle dashboard={true}> olga123@gmail.com </SubTitle> */}
-                            <FormArea>
-                                {/* <Avatar  resizeMode="cover" source={require("../assets/wunderlist-logo.png")} /> */}
-                                <Division />
-                                <SignButton onPress={() => {}}>
-                                    <SignButtonText onPress={pressHandler}>
-                                        Log Out
-                                    </SignButtonText>
-                                </SignButton>
-                            </FormArea>  
-                </DashboardContainer>
-            </InnerContainer>
-        </WrapContainer>
+            <View style={InnerContainer}>
+                <View style={DashboardContainer}>
+                    <Image style={DashboardImage} resizeMode="cover" source={require("../assets/wunderlist-logo.png")} />
+                            <View style={FormArea}>
+                                <View style={Division} />
+                                <View style={SignOut}>
+                                    <Ionicons onPress={logOut} name="log-out" size={45}  />
+                                </View>
+                            </View>
+                    </View>
+            </View>
+                    <TouchableHighlight>
+                        <View style={TaskButton}>
+                            <Text style={TaskText} onPress={() => {}}>Create a New Task</Text>
+                        </View>
+                    </TouchableHighlight>
+             </View>
     );
 };
 

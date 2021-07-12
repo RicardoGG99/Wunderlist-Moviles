@@ -1,45 +1,45 @@
-import styled from 'styled-components/native';
+import { StyleSheet } from "react-native"
 
-import { Colors } from './colors'
-const { secondary, tertiary, brand } = Colors
+export const Texts = StyleSheet.create({
+    
+    textInput: {
+        backgroundColor: "#E5E7EB",
+        padding: 15,
+        paddingLeft: 55,
+        paddingRight: 55,
+        borderRadius: 5,
+        fontSize: 16,
+        height: 60,
+        marginVertical: 3,
+        marginBottom: 10,
+        color: "black",
+    },
 
-export const TextInput = styled.TextInput`
-    background-color: ${secondary};
-    padding: 15px;
-    padding-left: 55px;
-    padding-right: 55px;
-    border-radius: 5px;
-    font-size: 16px;
-    height: 60px;
-    margin-vertical: 3px;
-    margin-bottom: 10px;
-    color: black;
-`;
+    InputLabel: {
+        color: "#1F2937",
+        fontSize: 13,
+        textAlign: "left",
+    },
 
-export const InputLabel = styled.Text`
-    color: ${tertiary};
-    font-size: 13px;
-    text-align: left;
-`;
+    MessageBox: {
+        textAlign: "center",
+        fontSize: 13,
+    },
 
-export const MessageBox = styled.Text`
-    text-align: center;
-    font-size: 13px;
-`;
+    ExtraText: {
+        justifyContent: "center",
+        alignContent: "center",
+        color: "#1F2937",
+        fontSize: 15,
+    },
 
-export const ExtraText = styled.Text`
-    justify-content: center;
-    align-content: center;
-    color: ${tertiary};
-    font-size: 15px;
-`;
+    TextLink: {
+        justifyContent: "center",
+        alignItems: "center",
+    },
 
-export const TextLink = styled.TouchableOpacity`
-    justify-content: center;
-    align-items: center;
-`;
-
-export const TextLinkContent = styled.Text`
-    color: lightseagreen;
-    font-size: 15px;
-`;
+    TextLinkContent: {
+        color: "lightseagreen",
+        fontSize: 15,
+    }
+})

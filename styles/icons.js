@@ -1,15 +1,18 @@
-import styled from 'styled-components/native';
+import { StyleSheet } from "react-native"
 
-export const LeftIcon = styled.View`
-    left: 15px;
-    top: 38px;
-    position: absolute;
-    z-index: 1;
-`; 
+export const Icons = StyleSheet.create({
+    LeftIcon: {
+        left: 15,
+        top: 38,
+        position: "absolute",
+        zIndex: 1,
+    },
 
-export const RightIcon = styled.TouchableOpacity`
-    right: 15px;
-    top: 38px;
-    position: absolute;
-    z-index: 1;
-`;
+    RightIcon: {
+        right: 15,
+        top: 38,
+        position: "absolute",
+        zIndex: 1,
+    }
+    
+})

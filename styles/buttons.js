@@ -1,19 +1,45 @@
-import styled from 'styled-components/native';
+import { StyleSheet } from "react-native"
 
-import { Colors } from './colors'
-const { primary } = Colors
+export const ButtonStyles = StyleSheet.create({
+    TaskButton: {
+        alignItems: "center",
+        backgroundColor: "lightseagreen",
+        padding: 15,
+        height: 60,
+        
+    },
 
-export const SignButton = styled.TouchableOpacity`
-    padding: 15px;
-    background-color: lightseagreen;
-    justify-content: center;
-    border-radius: 5px;
-    margin-vertical: 5px;
-    height: 60px;
-`;
+    TaskText: {
+        color: "white",
+        fontSize: 16,
+        textAlign: 'center',
+    },
 
-export const SignButtonText = styled.Text`
-    color: ${primary};
-    font-size: 16px;
-    text-align: center;
-`;
+    SignOut: {
+        bottom: 410,
+        left: 270,
+    },
+
+    SignButton: {
+        padding: 15,
+        backgroundColor: "lightseagreen",
+        justifyContent: "center",
+        borderRadius: 5,
+        marginVertical: 5,
+        height: 60,
+    },
+
+    SignButtonText: {
+        color: "white",
+        fontSize: 16,
+        textAlign: "center",
+    },
+
+    LogOutButton: {
+        borderRadius: 5,
+        height: 60,
+        width: "100%",
+        backgroundColor: "lightseagreen",
+        bottom: "100%",
+    }
+})

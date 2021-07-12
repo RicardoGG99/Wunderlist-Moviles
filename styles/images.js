@@ -1,25 +1,24 @@
-import styled from 'styled-components/native';
+import { StyleSheet } from "react-native"
 
-import { Colors } from './colors'
-const { secondary } = Colors
+export const Images = StyleSheet.create({
+    PageLogo: {
+        width: 250,
+        height: 200,
+    },
 
-export const PageLogo = styled.Image`
-    width: 250px;
-    height: 200px;
-`;
-
-// export const Avatar = styled.Image`
-//     width: 100px;
-//     height: 100px;
-//     margin: auto;
-//     border-radius: 50px;
-//     border-width: 2px;
-//     border-color: ${secondary};
-//     margin-bottom: 10px;
-//     margin-top: 10px;
-// `;
-
-export const DashboradImage = styled.Image`
-    height: 50%;
-    min-width: 100%;
-`;
+    Avatar: {
+        width: 100,
+        height: 100,
+        margin: "auto",
+        borderRadius: 50,
+        borderWidth: 2,
+        borderColor: "#E5E7EB",
+        marginBottom: 10,
+        marginTop: 10,
+    },
+    
+    DashboardImage: {
+        height: "50%",
+        minWidth: "100%",
+    }
+})

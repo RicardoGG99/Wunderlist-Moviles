@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
+import { TouchableOpacity, View, Image, Text, TextInput, ScrollView } from 'react-native'
 import { StatusBar } from 'expo-status-bar';
-
-//Formik
+import { Ionicons } from '@expo/vector-icons';
 import { Formik } from 'formik';
 
-//Icons
-import { Octicons, Ionicons } from '@expo/vector-icons';
-
 //styles
-import { SignButton, SignButtonText } from '../styles/buttons'
-import { Colors } from '../styles/colors'
-import { WrapContainer, InnerContainer } from '../styles/containers'
-import { LeftIcon, RightIcon } from '../styles/icons'
-import { PageLogo } from '../styles/images'
-import { TextInput, InputLabel, MessageBox, ExtraText, TextLink, TextLinkContent } from '../styles/texts'
-import { PageTitle, SubTitle } from '../styles/titles'
-import { FormArea, Division, ExtraView } from '../styles/views'
+import { ButtonStyles } from '../styles/buttons'
+import { Containers } from '../styles/containers'
+import { Icons } from '../styles/icons'
+import { Images } from '../styles/images'
+import { Texts } from '../styles/texts'
+import { Titles } from '../styles/titles'
+import { Views } from '../styles/views'
 
-const { gray, darkLight } = Colors
-
-
-import { View } from 'react-native'
+//Constants declarations
+const { WrapContainer, InnerContainer } = Containers
+const { LeftIcon, RightIcon } = Icons
+const { PageLogo } = Images
+const { PageTitle, SubTitle } = Titles
+const { FormArea, Division, ExtraView } = Views
+const { textInput, InputLabel, MessageBox, ExtraText, TextLink, TextLinkContent } = Texts
+const { SignButton, SignButtonText } = ButtonStyles
 
 
 const Login = ({ navigation }) => {
@@ -34,16 +34,13 @@ const Login = ({ navigation }) => {
     }
 
     return (
-        <WrapContainer>
+        <ScrollView>
+        <View style={WrapContainer}>
             <StatusBar style="dark" />
-            <InnerContainer>
-                <PageLogo  resizeMode="cover" source={require("../assets/wunderlist-logo.png")} />
-                <PageTitle> Wunderlist </PageTitle>
-                <SubTitle> Log to your Account: </SubTitle>
-
-                
-                    
-                
+            <View style={InnerContainer}>
+                <Image style={PageLogo} resizeMode="cover" source={require("../assets/wunderlist-logo.png")} />
+                <Text style={PageTitle}> Wunderlist </Text>
+                <Text style={SubTitle}> Log to your Account: </Text>
 
                 <Formik
                     initialValues={{username: '', password: ''}}
@@ -55,12 +52,12 @@ const Login = ({ navigation }) => {
                     
                     {
                         ({handleChange, handleBlur, handleSubmit, values}) => (
-                        <FormArea>
-                            <MyTextInput 
+                        <View style={FormArea}>
+                            <IconInputManager 
                                 label="Username"
-                                icon="person"
+                                icon="person-circle-sharp"
                                 placeholder="luisRG123"
-                                placeholderTextColor={ darkLight }
+                                placeholderTextColor="#9CA3AF"
                                 onChangeText={handleChange('username')}
                                 onBlur={handleBlur('username')}
                                 value={values.username}
@@ -68,11 +65,11 @@ const Login = ({ navigation }) => {
                             />
 
 
-                            <MyTextInput 
+                            <IconInputManager 
                                 label="Password"
-                                icon="lock"
+                                icon="ios-lock-closed"
                                 placeholder="********"
-                                placeholderTextColor={ darkLight }
+                                placeholderTextColor="#9CA3AF"
                                 onChangeText={handleChange('password')}
                                 onBlur={handleBlur('password')}
                                 value={values.password}
@@ -81,43 +78,44 @@ const Login = ({ navigation }) => {
                                 hidePassword={hidePassword}
                                 setHidePassword={setHidePassword}
                             />
-                            <MessageBox>...</MessageBox>
-                            <SignButton>
-                                <SignButtonText>
+                            <Text style={MessageBox}>...</Text>
+                            <TouchableOpacity style={SignButton}>
+                                <Text style={SignButtonText}>
                                     Sign In
-                                </SignButtonText>
-                            </SignButton>
-                            <Division />
-                            <ExtraView>
-                                <ExtraText>Don't have an account already? </ExtraText>
-                                <TextLink onPress={pressHandler}>
-                                    <TextLinkContent>Sign Up</TextLinkContent>
-                                </TextLink>
-                            </ExtraView>
-                        </FormArea>)  
+                                </Text>
+                            </TouchableOpacity>
+                            <View style={Division} />
+                            <View style={ExtraView}>
+                                <Text style={ExtraText}>Don't have an account already? </Text>
+                                <TouchableOpacity style={TextLink} onPress={pressHandler}>
+                                    <Text style={TextLinkContent}>Sign Up</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>)  
                     }
                 </Formik>
-            </InnerContainer>
-        </WrapContainer>
+            </View>
+        </View>
+    </ScrollView>    
     );
 };
 
-const MyTextInput = ({label, icon, isPassword, hidePassword, setHidePassword, ...props}) => {
+const IconInputManager = ({label, icon, isPassword, hidePassword, setHidePassword, ...props}) => {
     return (
         <View>
-            <LeftIcon>
-                <Octicons name={icon} size={30} color={gray} />
-            </LeftIcon>
+            <TouchableOpacity style={LeftIcon}>
+                <Ionicons name={icon} size={27} color="#787878" />
+            </TouchableOpacity>
 
-            <InputLabel>
+            <Text style={InputLabel}>
                 {label}
-            </InputLabel>
+            </Text>
 
-            <TextInput {...props} />
+            <TextInput style={textInput} {...props} />
             {isPassword && (
-                <RightIcon onPress={() => setHidePassword(!hidePassword)}>
-                    <Ionicons name={hidePassword ? 'md-eye-off' : 'md-eye'} size={30} color={darkLight} />
-                </RightIcon>
+                <TouchableOpacity style={RightIcon} onPress={() => setHidePassword(!hidePassword)}>
+                    <Ionicons name={hidePassword ? 'md-eye-off' : 'md-eye'} size={30} color="#9CA3AF" />
+                </TouchableOpacity>
             )}
         </View>
     )

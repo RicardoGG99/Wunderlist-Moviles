@@ -1,26 +1,26 @@
-import styled from 'styled-components/native';
-import constants from 'expo-constants'
+import { StyleSheet } from "react-native"
 
-import { Colors } from './colors'
-const { primary } = Colors
+export const Containers = StyleSheet.create({
+    
+    WrapContainer: {
+        flex: 1,
+        padding: 25,
+        backgroundColor: "white",
+    },
 
-const StatusBarHeight = constants.statusBarHeight
+    InnerContainer: {
+        flex: 1,
+        width: "100%",
+        alignItems: "center",
+    },
 
-export const WrapContainer = styled.View`
-    flex: 1;
-    padding: 25px;
-    padding-top: ${StatusBarHeight + 10}px;
-    background-color: ${primary};
-`
+    DashboardContainer: {
+        flex: 1,
+        width: "100%",
+        alignItems: "center",
+        padding: 25,
+        paddingTop: 10,
+        justifyContent: "center",
+    },
 
-export const InnerContainer = styled.View`
-    flex: 1;
-    width: 100%;
-    align-items: center;
-`;
-
-export const DashboardContainer = styled(InnerContainer)`
-    padding: 25px;
-    padding-top: 10px;
-    justify-content: center;
-`;
+});
