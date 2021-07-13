@@ -1,25 +1,28 @@
 import React, { useState } from 'react';
 import { TouchableOpacity, View, Image, Text, TextInput, ScrollView } from 'react-native'
 import { StatusBar } from 'expo-status-bar';
-import { Ionicons } from '@expo/vector-icons';
 import { Formik } from 'formik';
 
 //styles
 import { ButtonStyles } from '../styles/buttons'
 import { Containers } from '../styles/containers'
-import { Icons } from '../styles/icons'
 import { Images } from '../styles/images'
 import { Texts } from '../styles/texts'
 import { Titles } from '../styles/titles'
 import { Views } from '../styles/views'
 
+//Components
+import IconInputManager from '../components/IconInputManager'
+
+//Fetch
+import loginFetch from '../connectionToBack/loginFetch'
+
 //Constants declarations
 const { WrapContainer, InnerContainer } = Containers
-const { LeftIcon, RightIcon } = Icons
 const { PageLogo } = Images
 const { PageTitle, SubTitle } = Titles
 const { FormArea, Division, ExtraView } = Views
-const { textInput, InputLabel, MessageBox, ExtraText, TextLink, TextLinkContent } = Texts
+const { MessageBox, ExtraText, TextLink, TextLinkContent } = Texts
 const { SignButton, SignButtonText } = ButtonStyles
 
 
@@ -28,8 +31,15 @@ const Login = ({ navigation }) => {
     //useState
     const [hidePassword, setHidePassword] = useState(true)
 
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
 
-    const pressHandler = () => {
+    const Log = () => {
+        loginFetch()
+    }
+
+
+    const goToRegister = () => {
         navigation.navigate('Register')
     }
 
@@ -62,8 +72,9 @@ const Login = ({ navigation }) => {
                                 onBlur={handleBlur('username')}
                                 value={values.username}
                                 keyboardType="default"
+                                onChangeText={username => setUsername(username)}
+                                value={username}
                             />
-
 
                             <IconInputManager 
                                 label="Password"
@@ -77,9 +88,11 @@ const Login = ({ navigation }) => {
                                 isPassword={true}
                                 hidePassword={hidePassword}
                                 setHidePassword={setHidePassword}
+                                onChangeText={password => setPassword(password)}
+                                value={password}
                             />
-                            <Text style={MessageBox}>...</Text>
-                            <TouchableOpacity style={SignButton}>
+                            {/* <Text style={MessageBox}>...</Text> */}
+                            <TouchableOpacity style={SignButton} onPress={Log}>
                                 <Text style={SignButtonText}>
                                     Sign In
                                 </Text>
@@ -87,7 +100,7 @@ const Login = ({ navigation }) => {
                             <View style={Division} />
                             <View style={ExtraView}>
                                 <Text style={ExtraText}>Don't have an account already? </Text>
-                                <TouchableOpacity style={TextLink} onPress={pressHandler}>
+                                <TouchableOpacity style={TextLink} onPress={goToRegister}>
                                     <Text style={TextLinkContent}>Sign Up</Text>
                                 </TouchableOpacity>
                             </View>
@@ -99,26 +112,5 @@ const Login = ({ navigation }) => {
     </ScrollView>    
     );
 };
-
-const IconInputManager = ({label, icon, isPassword, hidePassword, setHidePassword, ...props}) => {
-    return (
-        <View>
-            <TouchableOpacity style={LeftIcon}>
-                <Ionicons name={icon} size={27} color="#787878" />
-            </TouchableOpacity>
-
-            <Text style={InputLabel}>
-                {label}
-            </Text>
-
-            <TextInput style={textInput} {...props} />
-            {isPassword && (
-                <TouchableOpacity style={RightIcon} onPress={() => setHidePassword(!hidePassword)}>
-                    <Ionicons name={hidePassword ? 'md-eye-off' : 'md-eye'} size={30} color="#9CA3AF" />
-                </TouchableOpacity>
-            )}
-        </View>
-    )
-}
 
 export default Login;

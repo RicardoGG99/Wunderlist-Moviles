@@ -4,7 +4,7 @@ const queries = require('../utils/queries');
 
 const createUser = async(req, res) => {
 
-    const {username, email, password} = req.body;
+    const { username, email, password } = req.body;
     
         try{
             const checkUser = await db.query(queries.CHECKUSER, [username]);
@@ -17,16 +17,18 @@ const createUser = async(req, res) => {
                     const HashPass = bcrypt.hashSync(password, salt);
                     const response = await db.query(queries.CREATE_USER, [username, email, HashPass]);
                     console.log(response.rows);
-                    res.status(200).send('User Created!')
+                    res.status(200).send('User Created:' + '\n' + 
+                                         'Username: ' + username + '\n' + 
+                                         'Email: ' + email + '\n')
                     await db.query('COMMIT');
                 }else{
-                    res.status(400).send('Email Exist');
+                    res.status(400).send('Email Already Exists!');
                 }
             }else{
-                res.status(400).send('User Exist!')
+                res.status(400).send('User Already Exists!')
             }
         }catch(err){
-            res.status(500).send('Server Error!');
+            res.status(500).send('Server Error! ' + err);
             await db.query('ROLLBACK');
             throw err;
         }
@@ -53,16 +55,16 @@ const updateUser = async (req, res) =>{
     await db.query('COMMIT');
         }else{
         console.log(checkEmailU.rows);
-        res.status(400).send('This email already Exist!')
+        res.status(400).send('This email already Exists!')
     }
 
     }else{
         console.log(checkIdU.rows);
-        res.status(400).send(`User Id ${id} not found!`)
+        res.status(400).send(`User with Id ${id} not found!`)
     }
     }catch(err){
         await db.query('ROLLBACK');
-        res.status(500).send('Server Error!');
+        res.status(500).send('Server Error: ' + err);
         throw err;
     }
 }
@@ -72,13 +74,16 @@ const deleteUser = async (req, res) =>{
     try{
     await db.query('BEGIN');
     const id = req.params.id;
+    const user = await db.query(queries.GET_USERBYID, [id]);
+    const username = user.rows[0].username;
     const checkIdD = await db.query(queries.CHECKID, [id]);
 
     if(checkIdD.rows != ''){
 
+    const tasks = await db.query(queries.DELETE_USERTASKS, [username]);
     const response = await db.query(queries.DELETE_USER, [id]);
     await db.query('COMMIT');
-    console.log(response);
+    console.log(response.rows + tasks.rows);
     res.status(200).send(`User ${id} Deleted!`)
     }else{
         res.status(400).send(`User Id ${id} not found!`);
@@ -86,7 +91,7 @@ const deleteUser = async (req, res) =>{
 
     }catch(err){
         await db.query('ROLLBACK');
-        res.status(500).send('Server Error!');
+        res.status(500).send('Server Error: ' + err);
         throw err;
     }
 }
