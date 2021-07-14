@@ -1,35 +1,24 @@
-const registerFetch = async (username, email, password) => {
+const registerFetch = (username, email, password) => {
+  const body = {
+    username: username,
+    email: email,
+    password: password,
+  };
 
-    try {
+  const data = {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  };
 
-        const body = {
-            username: username,
-            email: email,
-            password: password
-        }
-
-        const data = {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(body)
-         }
-
-        await fetch("http://186.185.175.10:3000/create", data)
-        // .then(response => response.json())
-        // .then(newResponse => {
-        //     console.log(newResponse)
-        // })
-
-    } catch (error) {
-        console.log('Soy el error del fetch' + '\n' + error)
-    }
-
-    
-
-    }
+  fetch('http://192.168.43.138:3000/create', data)
+    .then((cat) => console.log(cat.json()))
+    .then((dog) => console.log(dog))
+    .catch((err) => console.error('soy el error de fetch' + '\n' + err));
+};
 
 export default registerFetch;
