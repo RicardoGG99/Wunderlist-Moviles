@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const registerFetch = (username, email, password) => {
   try {
     const body = {
@@ -6,7 +8,7 @@ const registerFetch = (username, email, password) => {
       password: password,
     };
 
-    const datos = {
+    const data = {
       method: 'POST',
       mode: 'no-cors',
       headers: {
@@ -16,14 +18,14 @@ const registerFetch = (username, email, password) => {
       body: JSON.stringify(body),
     };
 
-    return fetch('http://192.168.43.138:3000/create', datos)
-      .then((response) => response.json())
-      .then((json) => {
-        return json.status;
-      })
+    return fetch('http://192.168.0.100:3000/create', data)
+      .then((res) => res.json())
       .catch((error) => {
         console.log('There has been a problem with your fetch operation: ' + error.message);
         throw error;
+      })
+      .then((response) => {
+        console.log('Success: ', response);
       });
   } catch (error) {
     console.log(error);

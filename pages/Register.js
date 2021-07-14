@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { TouchableOpacity, View, Image, Text, TextInput, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Formik } from 'formik';
+import axios from 'axios';
 
 //styles
 import { ButtonStyles } from '../styles/buttons';
@@ -36,14 +37,7 @@ const Register = ({ navigation }) => {
 
   const Log = async () => {
     if (password == confPassword) {
-      await console.log(registerFetch(username, email, password));
-
-      // if(message == 'Success'){
-      //     alert('Usuario Registrado Exitosamente')
-      //     // goToLogin()
-      // }else{
-      //     alert('hola')
-      // }
+      await registerFetch(username, email, password);
     } else {
       alert('The password confirmation is not correct');
     }
