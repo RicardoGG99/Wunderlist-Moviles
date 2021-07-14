@@ -34,9 +34,9 @@ const Register = ({ navigation }) => {
   const [password, setPassword] = useState('');
   const [confPassword, setConfPassword] = useState('');
 
-  const Log = () => {
+  const Log = async () => {
     if (password == confPassword) {
-      console.log(registerFetch(username, email, password));
+      await console.log(registerFetch(username, email, password));
 
       // if(message == 'Success'){
       //     alert('Usuario Registrado Exitosamente')

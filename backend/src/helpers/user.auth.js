@@ -15,14 +15,16 @@ const createUser = async (req, res) => {
         const salt = bcrypt.genSaltSync(12);
         const HashPass = bcrypt.hashSync(password, salt);
         const response = await db.query(queries.CREATE_USER, [username, email, HashPass]);
-        console.log(response.rows);
+        console.log(response.rows[0].id);
         res.status(200).send('User Created:' + '\n' + 'Username: ' + username + '\n' + 'Email: ' + email + '\n');
         await db.query('COMMIT');
       } else {
         res.status(400).send('Email Already Exists!');
+        alert('Email Already Exists!');
       }
     } else {
       res.status(400).send('User Already Exists!');
+      alert('User Already Exists!');
     }
   } catch (err) {
     res.status(500).send('Server Error! ' + err);
