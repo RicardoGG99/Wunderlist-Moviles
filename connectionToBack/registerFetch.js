@@ -1,4 +1,4 @@
-const registerFetch = async (username, email, password, req, res) => {
+const registerFetch = async (username, email, password) => {
 
     try {
 
@@ -18,10 +18,14 @@ const registerFetch = async (username, email, password, req, res) => {
             body: JSON.stringify(body)
          }
 
-        await fetch("http://192.168.0.100:3000/create", data)
-        
+        await fetch("http://186.185.175.10:3000/create", data)
+        // .then(response => response.json())
+        // .then(newResponse => {
+        //     console.log(newResponse)
+        // })
+
     } catch (error) {
-        console.log(error)
+        console.log('Soy el error del fetch' + '\n' + error)
     }
 
     

@@ -40,9 +40,15 @@ const Register = ({ navigation }) => {
         if(password == confPassword){
 
             if(registerFetch(username, email, password)){
-                alert('Usuario Registrado Exitosamente')
-                goToLogin()
+                console.log('Epa')
             }
+
+            // if(message == 'Success'){
+            //     alert('Usuario Registrado Exitosamente')
+            //     // goToLogin()
+            // }else{
+            //     alert('hola')
+            // }
         }else{
             alert('The password confirmation is not correct')
         }
