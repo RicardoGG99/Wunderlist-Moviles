@@ -15,7 +15,7 @@ import { Views } from '../styles/views';
 import IconInputManager from '../components/IconInputManager';
 
 //Fetch
-import { registerFetch } from '../connectionToBack/registerFetch';
+import registerFetch from '../connectionToBack/registerFetch';
 import { getRes } from '../connectionToBack/setGetRes';
 
 //Constants declarations
@@ -47,11 +47,11 @@ const Register = ({ navigation }) => {
         alert('Username or Email already exists');
         setUsername('');
         setEmail('');
-        setPassword('');
-        setConfPassword('');
       }
     } else {
       alert('The password confirmation is not correct');
+      setPassword('');
+      setConfPassword('');
     }
   };
 

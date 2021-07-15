@@ -1,15 +1,28 @@
-const loginFetch = async (id) => {
+import { setRes } from './setGetRes';
+
+const loginFetch = async (username, password) => {
   try {
+    const body = {
+      username: username,
+      password: password,
+    };
     const data = {
-      method: 'GET',
-      mode: 'no-cors',
+      method: 'POST',
+      mode: 'cors',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify(body),
     };
 
-    await fetch(`http://192.168.0.100:3000/user/${id}`, data);
+    await fetch(`http://192.168.0.100:3000/login`, data).then((dog) => {
+      if (dog.status == 200) {
+        setRes('Success');
+      } else {
+        setRes('Fail');
+      }
+    });
   } catch (error) {
     console.log(error);
   }

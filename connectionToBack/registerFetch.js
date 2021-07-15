@@ -35,4 +35,4 @@ const registerFetch = async (username, email, password) => {
   }
 };
 
-module.exports = { registerFetch };
+export default registerFetch;
