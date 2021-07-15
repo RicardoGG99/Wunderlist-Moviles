@@ -1,6 +1,6 @@
-import axios from 'axios';
+import { setRes } from './setGetRes';
 
-const registerFetch = (username, email, password) => {
+const registerFetch = async (username, email, password) => {
   try {
     const body = {
       username: username,
@@ -18,17 +18,21 @@ const registerFetch = (username, email, password) => {
       body: JSON.stringify(body),
     };
 
-    return fetch('http://localhost:4000/create', data)
-      .then(console.log(body))
+    await fetch('http://192.168.0.100:3000/create', data)
+      .then((cat) => {
+        if (cat.status == 200) {
+          setRes('Success');
+        } else {
+          setRes('Fail');
+        }
+      })
       .catch((error) => {
         console.log('There has been a problem with your fetch operation: ' + error.message);
         throw error;
-      })
-      .then((response) => {
-        console.log('Success: ', response);
       });
   } catch (error) {
     console.log(error);
   }
 };
-export default registerFetch;
+
+module.exports = { registerFetch };

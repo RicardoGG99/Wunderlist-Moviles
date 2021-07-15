@@ -14,13 +14,6 @@ const AuthTasksRoutes = require('./routes/auth.task');
 
 const app = express();
 
-app.use(cors({
-  origin: true,
-  credentials: true,
-  methods: 'POST, PUT, GET, DELETE, OPTIONS, PATCH',
-  allowedHeaders: 'Accept, Content-Type, Accept-Encoding, Content-Length, Authorization',
-}))
-
 app.use(express.json());
 app.use(cookieParser(process.env.SECRET || 'Just a Secret!'))
 app.use(session({
@@ -44,13 +37,20 @@ passport.deserializeUser(function(user, done) {
 app.use(passport.initialize());
 app.use(passport.session());
 
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT);
+console.log(`App Running on port: ${PORT}`);
+
 app.use(UserRoutes);
 app.use(AuthRoutes);
 app.use(LoginRoute);
 app.use(TasksRoutes);
 app.use(AuthTasksRoutes);
 
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT);
-console.log(`App Running on port: ${PORT}`);
+app.use(cors({
+    origin: true,
+    credentials: true,
+    methods: 'POST, PUT, GET, DELETE, OPTIONS, PATCH',
+    allowedHeaders: 'Accept, Content-Type, Accept-Encoding, Content-Length, Authorization',
+}))

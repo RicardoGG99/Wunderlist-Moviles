@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { TouchableOpacity, View, Image, Text, TextInput, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Formik } from 'formik';
-import axios from 'axios';
 
 //styles
 import { ButtonStyles } from '../styles/buttons';
@@ -16,7 +15,8 @@ import { Views } from '../styles/views';
 import IconInputManager from '../components/IconInputManager';
 
 //Fetch
-import registerFetch from '../connectionToBack/registerFetch';
+import { registerFetch } from '../connectionToBack/registerFetch';
+import { getRes } from '../connectionToBack/setGetRes';
 
 //Constants declarations
 const { WrapContainer, InnerContainer } = Containers;
@@ -38,6 +38,18 @@ const Register = ({ navigation }) => {
   const Log = async () => {
     if (password == confPassword) {
       await registerFetch(username, email, password);
+      const response = getRes();
+
+      if (response == 'Success') {
+        alert('User registered successfully');
+        goToLogin();
+      } else {
+        alert('Username or Email already exists');
+        setUsername('');
+        setEmail('');
+        setPassword('');
+        setConfPassword('');
+      }
     } else {
       alert('The password confirmation is not correct');
     }

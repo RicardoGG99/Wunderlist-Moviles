@@ -1,6 +1,5 @@
 node_modules/
 .expo/
-*.env/
 npm-debug.*
 *.jks
 *.p8
@@ -12,9 +11,12 @@ web-build/
 
 # macOS
 .DS_Store
+<<<<<<< HEAD
 
 backend/.env
 
 backend/src/utils/queries.js
 
 connectionToBack/registerFetch.js
+=======
+>>>>>>> parent of db1b25e... Updated some errors
