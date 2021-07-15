@@ -16,3 +16,5 @@ web-build/
 backend/.env
 
 backend/src/utils/queries.js
+
+connectionToBack/registerFetch.js

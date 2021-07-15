@@ -10,7 +10,7 @@ const registerFetch = (username, email, password) => {
 
     const data = {
       method: 'POST',
-      mode: 'no-cors',
+      mode: 'cors',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -18,8 +18,8 @@ const registerFetch = (username, email, password) => {
       body: JSON.stringify(body),
     };
 
-    return fetch('http://192.168.0.100:3000/create', data)
-      .then((res) => res.json())
+    return fetch('http://localhost:4000/create', data)
+      .then(console.log(body))
       .catch((error) => {
         console.log('There has been a problem with your fetch operation: ' + error.message);
         throw error;
