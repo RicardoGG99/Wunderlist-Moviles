@@ -15,7 +15,7 @@ import { Views } from '../styles/views';
 //Components
 import IconInputManager from '../components/IconInputManager';
 // import SelectInput from '../components/SelectInput';
-// import DateInputManager from '../components/DateInputManager';
+import DateInputManager from '../components/DateInputManager';
 import DescriptionArea from '../components/DescriptionArea';
 
 //Fetch
@@ -35,7 +35,7 @@ const createTask = ({ navigation }) => {
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
   const [tag, setTag] = useState('');
-  const [dt, setDt] = useState('');
+  const [dt, setDt] = useState('Pick a Date');
 
   const create = async () => {
     console.log(tag);
@@ -101,12 +101,12 @@ const createTask = ({ navigation }) => {
                   value={values.tag}
                 /> */}
 
-                {/* <DateInputManager
-                  label="Date"
+                <DateInputManager
+                  label={dt.toString()}
                   onChangeText={handleChange('dt')}
                   onChangeText={(dt) => setDt(dt)}
                   value={dt}
-                /> */}
+                />
 
                 {/* <Text style={MessageBox}>...</Text> */}
                 <TouchableOpacity style={SignButton} onPress={create}>

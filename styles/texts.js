@@ -63,4 +63,11 @@ export const Texts = StyleSheet.create({
     alignSelf: 'center',
     paddingBottom: 20,
   },
+
+  DateText: {
+    color: '#1F2937',
+    fontSize: 15,
+    bottom: 50,
+    left: 50,
+  },
 });
