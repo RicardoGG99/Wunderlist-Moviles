@@ -50,7 +50,7 @@ export const Texts = StyleSheet.create({
     paddingRight: 55,
     borderRadius: 5,
     fontSize: 16,
-    height: 90,
+    height: 60,
     marginVertical: 1,
     marginBottom: 1,
     color: 'black',

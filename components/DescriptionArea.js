@@ -21,9 +21,10 @@ const DescriptionArea = ({ ...props }) => {
         style={TextDescription}
         placeholder="Description"
         placeholderTextColor="#9CA3AF"
-        multiline
         maxLength={40}
-        numberOfLines={4}
+        multiline
+        numberOfLines={2}
+        textAlignVertical="top"
         {...props}
       />
     </View>

@@ -38,17 +38,18 @@ const createTask = ({ navigation }) => {
   const [dt, setDt] = useState('Pick a Date for your Task');
 
   const create = async () => {
-    console.log(tag);
-    await createTaskFetch(title, desc, tag, dt);
+    console.log(tag.value);
+    await createTaskFetch(title, desc, tag, dt.value);
     const response = getRes();
-    console.log('El tag: ' + tag);
+    console.log('El tag: ' + tag.value);
     if (response == 'Success') {
       alert(' Task Created successfully');
     } else {
       alert('Error Creating the task');
       setTitle('');
       setDesc('');
-      setDt('');
+      setTag('');
+      setDt('Pick a Date for your Task');
     }
   };
 
@@ -99,14 +100,12 @@ const createTask = ({ navigation }) => {
                   onChangeText={(tag) => {
                     setTag(tag);
                   }}
-                  value={tag}
                 />
 
                 <DateInputManager
                   label={dt.toString()}
                   onChangeText={handleChange('dt')}
                   onChangeText={(dt) => setDt(dt)}
-                  // value={dt}
                 />
 
                 <TouchableOpacity style={SignButton} onPress={create}>

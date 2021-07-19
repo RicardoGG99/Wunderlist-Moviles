@@ -17,7 +17,7 @@ const IconInputManager = ({ label, icon, isPassword, hidePassword, setHidePasswo
 
       <Text style={InputLabel}>{label}</Text>
 
-      <TextInput editable={able} style={textInput} {...props} />
+      <TextInput maxLength={20} editable={able} style={textInput} {...props} />
       {isPassword && (
         <TouchableOpacity style={RightIcon} onPress={() => setHidePassword(!hidePassword)}>
           <Ionicons name={hidePassword ? 'md-eye-off' : 'md-eye'} size={30} color="#9CA3AF" />

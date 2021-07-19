@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { View, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -20,6 +20,10 @@ const RenderTask = ({ item, index, show, setShow }) => {
       newArr[index].color = 'red';
     }
 
+    // newArr.push({ title: newArr[index].title, id: newArr.length, color: 'red' });
+    // newArr.splice()
+    // alert(newArr[newArr.length]);
+    // newArr.
     setShow(newArr);
   };
 

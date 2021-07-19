@@ -1,10 +1,10 @@
 import React from 'react';
 import ModalSelector from 'react-native-modal-selector';
 
-import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { Texts } from '../styles/texts';
 
-const { InputLabel, textInput } = Texts;
+const { InputLabel } = Texts;
 
 const options = [
   { key: '1', value: 'Urgent', label: 'Urgent' },
@@ -27,6 +27,7 @@ const SelectStyles = StyleSheet.create({
 
   SelectBackground: {
     backgroundColor: '#E5E7EB',
+    borderBottomWidth: 1,
   },
 
   SelectInitialText: {
@@ -34,11 +35,15 @@ const SelectStyles = StyleSheet.create({
     fontSize: 15,
     textAlign: 'center',
   },
+
+  SelectedItemTextStyle: {
+    color: 'gray',
+    fontSize: 15,
+    textAlign: 'center',
+  },
 });
 
-const onChangeStyle = () => {};
-
-const SelectInput = ({ label, onChangeText, value }) => {
+const SelectInput = ({ label, onChangeText }) => {
   return (
     <View style={SelectStyles.SelectView}>
       <Text style={InputLabel}>{label}</Text>
@@ -51,7 +56,7 @@ const SelectInput = ({ label, onChangeText, value }) => {
         style={SelectStyles.SelectBackground}
         optionStyle={SelectStyles.SelectText}
         initValueTextStyle={SelectStyles.SelectInitialText}
-        text
+        selectedItemTextStyle={SelectStyles.SelectedItemTextStyle}
       />
     </View>
   );
