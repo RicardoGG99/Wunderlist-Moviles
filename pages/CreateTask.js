@@ -14,7 +14,7 @@ import { Views } from '../styles/views';
 
 //Components
 import IconInputManager from '../components/IconInputManager';
-// import SelectInput from '../components/SelectInput';
+import SelectInput from '../components/SelectInput';
 import DateInputManager from '../components/DateInputManager';
 import DescriptionArea from '../components/DescriptionArea';
 
@@ -35,7 +35,7 @@ const createTask = ({ navigation }) => {
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
   const [tag, setTag] = useState('');
-  const [dt, setDt] = useState('Pick a Date');
+  const [dt, setDt] = useState('Pick a Date for your Task');
 
   const create = async () => {
     console.log(tag);
@@ -93,22 +93,22 @@ const createTask = ({ navigation }) => {
                   value={desc}
                 />
 
-                {/* <SelectInput
+                <SelectInput
                   label="Tag"
-                  placeholder="Select the importance..."
                   onChangeText={handleChange('tag')}
-                  onChangeText={(tag) => setTag(tag.value)}
-                  value={values.tag}
-                /> */}
+                  onChangeText={(tag) => {
+                    setTag(tag);
+                  }}
+                  value={tag}
+                />
 
                 <DateInputManager
                   label={dt.toString()}
                   onChangeText={handleChange('dt')}
                   onChangeText={(dt) => setDt(dt)}
-                  value={dt}
+                  // value={dt}
                 />
 
-                {/* <Text style={MessageBox}>...</Text> */}
                 <TouchableOpacity style={SignButton} onPress={create}>
                   <Text style={SignButtonText}>Create</Text>
                 </TouchableOpacity>

@@ -1,47 +1,57 @@
 import React from 'react';
-import Select from 'react-select';
+import ModalSelector from 'react-native-modal-selector';
 
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
 import { Texts } from '../styles/texts';
 
-const { InputLabel } = Texts;
+const { InputLabel, textInput } = Texts;
 
 const options = [
-  { value: 'Urgent', label: 'Urgent' },
-  { value: 'Important', label: 'Important' },
-  { value: 'Less Important', label: 'Less Important' },
-  { value: 'Not Important', label: 'Not Important' },
+  { key: '1', value: 'Urgent', label: 'Urgent' },
+  { key: '2', value: 'Important', label: 'Important' },
+  { key: '3', value: 'Less Important', label: 'Less Important' },
+  { key: '4', value: 'Not Important', label: 'Not Important' },
 ];
 
-const selectStyles = {
-  control: (styles) => ({
-    ...styles,
-    fontFamily: 'sans-serif',
-    fontSize: 13,
-    color: '#1F2937',
-    backgroundColor: '#E5E7EB',
-  }),
-  option: (styles) => {
-    return {
-      ...styles,
-      color: '#1F2937',
-      fontSize: 13,
-      fontFamily: 'sans-serif',
-    };
+const SelectStyles = StyleSheet.create({
+  SelectView: {
+    flex: 1,
+    justifyContent: 'space-around',
   },
-  placeholder: () => ({ color: '#9CA3AF' }),
-  menu: () => ({ zIndex: 9999999 }),
-};
-const SelectInput = ({ props }) => {
+
+  SelectText: {
+    justifyContent: 'center',
+    alignContent: 'center',
+    fontSize: 15,
+  },
+
+  SelectBackground: {
+    backgroundColor: '#E5E7EB',
+  },
+
+  SelectInitialText: {
+    color: 'gray',
+    fontSize: 15,
+    textAlign: 'center',
+  },
+});
+
+const onChangeStyle = () => {};
+
+const SelectInput = ({ label, onChangeText, value }) => {
   return (
-    <View>
-      <Text style={InputLabel}>{props.label}</Text>
-      <Select
-        value={props.tag}
-        options={options}
-        styles={selectStyles}
-        onChange={props.onChangeText}
-        placeholder={props.placeholder}
+    <View style={SelectStyles.SelectView}>
+      <Text style={InputLabel}>{label}</Text>
+      <ModalSelector
+        cancelText="Cancel"
+        initValue="Select a Tag"
+        data={options}
+        onChange={onChangeText}
+        closeOnChange={true}
+        style={SelectStyles.SelectBackground}
+        optionStyle={SelectStyles.SelectText}
+        initValueTextStyle={SelectStyles.SelectInitialText}
+        text
       />
     </View>
   );

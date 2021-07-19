@@ -18,7 +18,7 @@ const registerFetch = async (username, email, password) => {
       body: JSON.stringify(body),
     };
 
-    await fetch('http://192.168.0.100:3000/create', data)
+    await fetch('http://192.168.0.101:3000/create', data)
       .then((cat) => {
         if (cat.status == 200) {
           setRes('Success');

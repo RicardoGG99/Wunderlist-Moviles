@@ -12,7 +12,7 @@ const logoutFetch = async () => {
       },
     };
 
-    await fetch('http://192.168.0.100:3000/logout', data).then((dog) => {
+    await fetch('http://192.168.0.101:3000/logout', data).then((dog) => {
       console.log(dog.status);
       if (dog.status == 200) {
         setRes('Success');
