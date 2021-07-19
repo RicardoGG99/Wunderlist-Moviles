@@ -15,8 +15,8 @@ import { Views } from '../styles/views';
 import IconInputManager from '../components/IconInputManager';
 
 //Fetch
-import loginFetch from '../connectionToBack/loginFetch';
-import { getRes } from '../connectionToBack/setGetRes';
+// import registerFetch from '../connectionToBack/registerFetch';
+// import { getRes } from '../connectionToBack/setGetRes';
 
 //Constants declarations
 const { WrapContainer, InnerContainer } = Containers;
@@ -26,36 +26,33 @@ const { FormArea, Division, ExtraView } = Views;
 const { MessageBox, ExtraText, TextLink, TextLinkContent } = Texts;
 const { SignButton, SignButtonText } = ButtonStyles;
 
-const Login = ({ navigation }) => {
+const UpdateUser = ({ navigation }) => {
   //useState
   const [hidePassword, setHidePassword] = useState(true);
 
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const Log = async () => {
-    await loginFetch(username, password);
+  //   const Log = async () => {
+  //     if (password == confPassword) {
+  //       await registerFetch(username, email, password);
+  //       const response = getRes();
 
-    const response = getRes();
-    console.log(response);
-
-    if (response == 'Success') {
-      alert('Logged Successfully');
-      goToDashboard();
-    } else {
-      alert('Credentials are not correct');
-      setUsername('');
-      setPassword('');
-    }
-  };
-
-  const goToRegister = () => {
-    navigation.navigate('Register');
-  };
-
-  const goToDashboard = () => {
-    navigation.navigate('Dashboard');
-  };
+  //       if (response == 'Success') {
+  //         alert('User registered successfully');
+  //         goToLogin();
+  //       } else {
+  //         alert('Username or Email already exists');
+  //         setUsername('');
+  //         setEmail('');
+  //       }
+  //     } else {
+  //       alert('The password confirmation is not correct');
+  //       setPassword('');
+  //       setConfPassword('');
+  //     }
+  //   };
 
   return (
     <ScrollView>
@@ -64,10 +61,10 @@ const Login = ({ navigation }) => {
         <View style={InnerContainer}>
           <Image style={PageLogo} resizeMode="cover" source={require('../assets/wunderlist-logo.png')} />
           <Text style={PageTitle}> Wunderlist </Text>
-          <Text style={SubTitle}> Log to your Account: </Text>
+          <Text style={SubTitle}> Update your Email: </Text>
 
           <Formik
-            initialValues={{ username: '', password: '' }}
+            initialValues={{ username: '', email: '', password: '', confPassword: '' }}
             onSubmit={(values) => {
               console.log(values);
             }}
@@ -87,6 +84,20 @@ const Login = ({ navigation }) => {
                   keyboardType="default"
                   onChangeText={(username) => setUsername(username)}
                   value={username}
+                  able={false}
+                />
+
+                <IconInputManager
+                  label="Email Address"
+                  icon="mail"
+                  placeholder="richardg@gmail.com"
+                  placeholderTextColor="#9CA3AF"
+                  onChangeText={handleChange('email')}
+                  onBlur={handleBlur('email')}
+                  value={values.email}
+                  keyboardType="email-address"
+                  onChangeText={(email) => setEmail(email)}
+                  value={email}
                   able={true}
                 />
 
@@ -104,20 +115,12 @@ const Login = ({ navigation }) => {
                   setHidePassword={setHidePassword}
                   onChangeText={(password) => setPassword(password)}
                   value={password}
-                  able={true}
+                  able={false}
                 />
 
-                {/* <Text style={MessageBox}>...</Text> */}
-                <TouchableOpacity style={SignButton} onPress={Log}>
-                  <Text style={SignButtonText}>Sign In</Text>
+                <TouchableOpacity style={SignButton}>
+                  <Text style={SignButtonText}>Update</Text>
                 </TouchableOpacity>
-                <View style={Division} />
-                <View style={ExtraView}>
-                  <Text style={ExtraText}>Don't have an account already? </Text>
-                  <TouchableOpacity style={TextLink} onPress={goToRegister}>
-                    <Text style={TextLinkContent}>Sign Up</Text>
-                  </TouchableOpacity>
-                </View>
               </View>
             )}
           </Formik>
@@ -127,4 +130,4 @@ const Login = ({ navigation }) => {
   );
 };
 
-export default Login;
+export default UpdateUser;

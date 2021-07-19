@@ -89,6 +89,7 @@ const Register = ({ navigation }) => {
                   keyboardType="default"
                   onChangeText={(username) => setUsername(username)}
                   value={username}
+                  able={true}
                 />
 
                 <IconInputManager
@@ -102,6 +103,7 @@ const Register = ({ navigation }) => {
                   keyboardType="email-address"
                   onChangeText={(email) => setEmail(email)}
                   value={email}
+                  able={true}
                 />
 
                 <IconInputManager
@@ -118,6 +120,7 @@ const Register = ({ navigation }) => {
                   setHidePassword={setHidePassword}
                   onChangeText={(password) => setPassword(password)}
                   value={password}
+                  able={true}
                 />
 
                 <IconInputManager
@@ -134,6 +137,7 @@ const Register = ({ navigation }) => {
                   setHidePassword={setHidePassword}
                   onChangeText={(confPassword) => setConfPassword(confPassword)}
                   value={confPassword}
+                  able={true}
                 />
                 {/* <Text style={MessageBox}>...</Text> */}
                 <TouchableOpacity style={SignButton} onPress={Log}>

@@ -8,16 +8,16 @@ import { Icons } from '../styles/icons';
 const { textInput, InputLabel } = Texts;
 const { LeftIcon, RightIcon } = Icons;
 
-const IconInputManager = ({ label, icon, isPassword, hidePassword, setHidePassword, ...props }) => {
+const IconInputManager = ({ label, icon, isPassword, hidePassword, setHidePassword, able, ...props }) => {
   return (
     <View>
-      <TouchableOpacity style={LeftIcon}>
+      <View style={LeftIcon}>
         <Ionicons name={icon} size={27} color="#787878" />
-      </TouchableOpacity>
+      </View>
 
       <Text style={InputLabel}>{label}</Text>
 
-      <TextInput style={textInput} {...props} />
+      <TextInput editable={able} style={textInput} {...props} />
       {isPassword && (
         <TouchableOpacity style={RightIcon} onPress={() => setHidePassword(!hidePassword)}>
           <Ionicons name={hidePassword ? 'md-eye-off' : 'md-eye'} size={30} color="#9CA3AF" />

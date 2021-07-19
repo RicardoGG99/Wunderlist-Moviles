@@ -1,23 +1,19 @@
 import { setRes } from './setGetRes';
 
-const loginFetch = async (username, password) => {
+const logoutFetch = async () => {
   try {
-    const body = {
-      username: username,
-      password: password,
-    };
     const data = {
-      method: 'POST',
-      mode: 'cors',
+      method: 'GET',
+      mode: 'no-cors',
       credentials: 'include',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(body),
     };
 
-    await fetch(`http://192.168.0.100:3000/login`, data).then((dog) => {
+    await fetch('http://192.168.0.100:3000/logout', data).then((dog) => {
+      console.log(dog.status);
       if (dog.status == 200) {
         setRes('Success');
       } else {
@@ -29,4 +25,4 @@ const loginFetch = async (username, password) => {
   }
 };
 
-export default loginFetch;
+export default logoutFetch;

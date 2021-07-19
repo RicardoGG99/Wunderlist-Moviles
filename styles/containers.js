@@ -1,26 +1,24 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet } from 'react-native';
 
 export const Containers = StyleSheet.create({
-    
-    WrapContainer: {
-        flex: 1,
-        padding: 25,
-        backgroundColor: "white",
-    },
+  WrapContainer: {
+    flex: 1,
+    padding: 5,
+    backgroundColor: 'white',
+  },
 
-    InnerContainer: {
-        flex: 1,
-        width: "100%",
-        alignItems: "center",
-    },
+  InnerContainer: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+  },
 
-    DashboardContainer: {
-        flex: 1,
-        width: "100%",
-        alignItems: "center",
-        padding: 25,
-        paddingTop: 10,
-        justifyContent: "center",
-    },
-
+  DashboardContainer: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    padding: 25,
+    paddingTop: 10,
+    justifyContent: 'center',
+  },
 });

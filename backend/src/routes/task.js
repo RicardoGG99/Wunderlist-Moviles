@@ -1,4 +1,4 @@
-const {Router} = require('express');
+const { Router } = require('express');
 const { getTasks, getTaskById, getTasksByUsername } = require('../helpers/task');
 const router = Router();
 
