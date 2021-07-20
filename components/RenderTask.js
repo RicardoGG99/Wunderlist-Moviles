@@ -1,16 +1,20 @@
-import React from 'react';
-import { View, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, TouchableOpacity, TextInput, ScrollView, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import { Icons } from '../styles/icons';
 import { Texts } from '../styles/texts';
 import { ButtonStyles } from '../styles/buttons';
 
+import getTasksById from '../connectionToBack/getTasksByIdFetch';
+import deleteTask from '../connectionToBack/deleteTaskFetch';
+import { getRes } from '../connectionToBack/setGetRes';
+
 const { TrashIcon, PinIcon } = Icons;
 const { textInput } = Texts;
 const { TaskInput } = ButtonStyles;
 
-const RenderTask = ({ item, index, show, setShow }) => {
+const RenderTask = ({ item, index, show, setShow, nav }) => {
   const setColorPinIcon = (index) => {
     let newArr = [...show];
 
@@ -20,11 +24,30 @@ const RenderTask = ({ item, index, show, setShow }) => {
       newArr[index].color = 'red';
     }
 
-    // newArr.push({ title: newArr[index].title, id: newArr.length, color: 'red' });
-    // newArr.splice()
-    // alert(newArr[newArr.length]);
-    // newArr.
     setShow(newArr);
+  };
+
+  const [data, setData] = useState('');
+
+  // const seeTask = async () => {
+  //   const res = await getTaskById(item.id);
+  //   setData(res);
+  //   nav.navigate('updateTask');
+  //   console.log(data);
+  // };
+
+  const deleTask = async () => {
+    const info = await deleteTask(item.id);
+
+    const res = getRes();
+
+    if (res == 'Success') {
+      alert('Task Deleted');
+      console.log('Task Deleted!');
+    } else {
+      alert('Could Not Delete Task');
+      console.log('Error!');
+    }
   };
 
   return (
@@ -39,7 +62,7 @@ const RenderTask = ({ item, index, show, setShow }) => {
         </TouchableOpacity>
 
         <TouchableOpacity style={TrashIcon}>
-          <Ionicons name="trash-sharp" size={35} color="#9CA3AF" />
+          <Ionicons onPress={deleTask} name="trash-sharp" size={35} color="#9CA3AF" />
         </TouchableOpacity>
       </View>
     </ScrollView>

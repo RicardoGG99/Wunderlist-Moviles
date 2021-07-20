@@ -1,16 +1,18 @@
 import { setRes } from './setGetRes';
 
-const registerFetch = async (username, email, password) => {
+const updateTaskFetch = async (title, desc, tag, dt, id) => {
   try {
     const body = {
-      username: username,
-      email: email,
-      password: password,
+      title: title,
+      desc: desc,
+      tag: tag,
+      dt: dt,
     };
 
     const data = {
       method: 'POST',
       mode: 'cors',
+      credentials: 'include',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -18,7 +20,7 @@ const registerFetch = async (username, email, password) => {
       body: JSON.stringify(body),
     };
 
-    await fetch('http://192.168.43.138:3000/create', data)
+    return await fetch(`http://192.168.0.101:3000/task/${id}`, data)
       .then((cat) => {
         if (cat.status == 200) {
           setRes('Success');
@@ -29,10 +31,12 @@ const registerFetch = async (username, email, password) => {
       .catch((error) => {
         console.log('There has been a problem with your fetch operation: ' + error.message);
         throw error;
+      })
+      .then((response) => {
+        console.log('Success: ', response);
       });
   } catch (error) {
     console.log(error);
   }
 };
-
-export default registerFetch;
+export default updateTaskFetch;

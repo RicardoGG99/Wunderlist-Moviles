@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TouchableHighlight, Text, View } from 'react-native';
+import { TouchableHighlight, Text, View, RefreshControl, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -15,11 +15,17 @@ import RenderTask from '../components/RenderTask';
 import { ButtonStyles } from '../styles/buttons';
 import { Containers } from '../styles/containers';
 import { Views } from '../styles/views';
+import { Texts } from '../styles/texts';
+import { Icons } from '../styles/icons';
+
+import getTasksFetch from '../connectionToBack/getTasksFetch.js';
 
 //Constants declarations
 const { WrapContainer, InnerContainer, DashboardContainer } = Containers;
 const { FormArea } = Views;
-const { SignIn, SignOut, TaskButton, TaskText } = ButtonStyles;
+const { SignIn, SignOut, TaskButton, TaskText, TaskInput } = ButtonStyles;
+const { InputLabel, textInput } = Texts;
+const { TrashIcon, PinIcon } = Icons;
 
 const Dashboard = ({ navigation }) => {
   const FlatListData = [
@@ -42,11 +48,16 @@ const Dashboard = ({ navigation }) => {
     },
   ];
 
+  const loadTasks = async () => {
+    const data = await getTasksFetch();
+    console.log('las tareas: ' + JSON.stringify(data));
+    setShow(data);
+  };
   //useState y useEffect
   const [show, setShow] = useState('');
 
   useEffect(() => {
-    setShow(FlatListData);
+    loadTasks();
   }, []);
 
   //Redirects
@@ -71,17 +82,21 @@ const Dashboard = ({ navigation }) => {
     navigation.navigate('Dashboard');
   };
 
-  const goToUpdateUser = () => {
-    navigation.navigate('UpdateUser');
+  const goToUpdateTask = () => {
+    navigation.navigate('updateTask');
   };
 
   const goToCreateTask = () => {
     navigation.navigate('CreateTask');
   };
 
+  const onRefresh = React.useCallback(async () => {
+    await loadTasks();
+  });
+
   //Render Flatlist Items
   const renderItem = ({ item, index }) => {
-    return <RenderTask item={item} index={index} show={show} setShow={setShow} />;
+    return <RenderTask nav={navigation} item={item} index={index} show={show} setShow={setShow} />;
   };
 
   return (
@@ -89,7 +104,12 @@ const Dashboard = ({ navigation }) => {
       <StatusBar style="light" />
       <View style={InnerContainer}>
         <View style={DashboardContainer}>
-          <DashboardTitle show={show} renderItem={renderItem} keyExtractor={(item) => item.id.toString()} />
+          <DashboardTitle
+            show={show}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id.toString()}
+            refreshControl={<RefreshControl onRefresh={onRefresh} />}
+          />
 
           <View style={FormArea}>
             <View style={SignIn}>

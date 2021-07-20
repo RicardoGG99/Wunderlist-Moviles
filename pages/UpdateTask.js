@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, View, Image, Text, TextInput, ScrollView } from 'react-native';
+import { TouchableOpacity, View, Image, Text, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Formik } from 'formik';
 import { getRes } from '../connectionToBack/setGetRes';
@@ -19,7 +19,7 @@ import DateInputManager from '../components/DateInputManager';
 import DescriptionArea from '../components/DescriptionArea';
 
 //Fetch
-import createTaskFetch from '../connectionToBack/createTaskFetch';
+import updateTaskFetch from '../connectionToBack/updateTaskFetch';
 
 //Constants declarations
 const { WrapContainer, InnerContainer } = Containers;
@@ -29,7 +29,7 @@ const { FormArea, Division, ExtraView } = Views;
 const { MessageBox, ExtraText, TextLink, TextLinkContent } = Texts;
 const { SignButton, SignButtonText } = ButtonStyles;
 
-const createTask = ({ navigation }) => {
+const updateTask = ({ navigation }) => {
   //useState
 
   const [title, setTitle] = useState('');
@@ -37,13 +37,13 @@ const createTask = ({ navigation }) => {
   const [tag, setTag] = useState('');
   const [dt, setDt] = useState('Pick a Date for your Task');
 
-  const create = async () => {
+  const update = async () => {
     console.log(tag.value);
-    await createTaskFetch(title, desc, tag.value, dt);
+    await updateTaskFetch(title, desc, tag.value, dt);
     const response = getRes();
     console.log('El tag: ' + tag.value);
     if (response == 'Success') {
-      alert(' Task Created successfully');
+      alert(' Task Updated successfully');
     } else {
       alert('Error Creating the task');
       setTitle('');
@@ -60,7 +60,7 @@ const createTask = ({ navigation }) => {
         <View style={InnerContainer}>
           <Image style={PageLogo} resizeMode="cover" source={require('../assets/wunderlist-logo.png')} />
           <Text style={PageTitle}> Wunderlist </Text>
-          <Text style={SubTitle}> Create a new Task </Text>
+          <Text style={SubTitle}> Update your Task </Text>
 
           <Formik
             initialValues={{ title: '', desc: '', tag: '', dt: '' }}
@@ -108,8 +108,8 @@ const createTask = ({ navigation }) => {
                   onChangeText={(dt) => setDt(dt)}
                 />
 
-                <TouchableOpacity style={SignButton} onPress={create}>
-                  <Text style={SignButtonText}>Create</Text>
+                <TouchableOpacity style={SignButton} onPress={update}>
+                  <Text style={SignButtonText}>Update</Text>
                 </TouchableOpacity>
               </View>
             )}
@@ -120,4 +120,4 @@ const createTask = ({ navigation }) => {
   );
 };
 
-export default createTask;
+export default updateTask;

@@ -17,7 +17,7 @@ const loginFetch = async (username, password) => {
       body: JSON.stringify(body),
     };
 
-    await fetch(`http://192.168.0.101:3000/login`, data).then((dog) => {
+    await fetch(`http://192.168.43.138:3000/login`, data).then((dog) => {
       if (dog.status == 200) {
         setRes('Success');
       } else {

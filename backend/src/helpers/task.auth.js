@@ -51,7 +51,7 @@ const updateTask = async (req, res) => {
 
 const deleteTask = async (req, res) => {
   try {
-    const id = req.user;
+    const id = req.params.id;
 
     await db.query('BEGIN');
     const checkId = await db.query(queries.CHECKID, [id]);

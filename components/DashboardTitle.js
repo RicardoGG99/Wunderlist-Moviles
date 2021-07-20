@@ -8,7 +8,7 @@ import { Views } from '../styles/views';
 const { DashboardTitleText } = Texts;
 const { DashboardTitleView } = Views;
 
-const DashboardTitle = ({ show, render, ...props }) => {
+const DashboardTitle = ({ show, ...props }) => {
   return (
     <View style={DashboardTitleView}>
       <Text style={DashboardTitleText}> Your Tasks List </Text>

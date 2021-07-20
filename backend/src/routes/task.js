@@ -4,6 +4,6 @@ const router = Router();
 
 router.get('/tasks', getTasks);
 router.get('/tasks/:id', getTaskById);
-router.get('/usertasks/:id', getTasksByUsername);
+router.get('/usertasks', getTasksByUsername);
 
 module.exports = router;

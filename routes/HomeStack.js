@@ -6,10 +6,15 @@ import Register from '../pages/Register';
 import Dashboard from '../pages/Dashboard';
 import CreateTask from '../pages/CreateTask';
 import UpdateUser from '../pages/UpdateUser';
+import UpdateTask from '../pages/UpdateTask';
 
 const screens = {
   Dashboard: {
     screen: Dashboard,
+  },
+
+  UpdateTask: {
+    screen: UpdateTask,
   },
 
   CreateTask: {

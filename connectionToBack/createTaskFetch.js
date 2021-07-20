@@ -20,7 +20,7 @@ const createTaskFetch = async (title, desc, tag, dt) => {
       body: JSON.stringify(body),
     };
 
-    return await fetch('http://192.168.0.101:3000/createtask', data)
+    return await fetch('http://192.168.43.138:3000/createtask', data)
       .then((cat) => {
         if (cat.status == 200) {
           setRes('Success');
