@@ -18,7 +18,7 @@ const registerFetch = async (username, email, password) => {
       body: JSON.stringify(body),
     };
 
-    await fetch('http://192.168.43.138:3000/create', data)
+    await fetch('https://p2moviles.herokuapp.com/create', data)
       .then((cat) => {
         if (cat.status == 200) {
           setRes('Success');

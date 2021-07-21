@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TouchableOpacity, View, Image, Text, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Formik } from 'formik';
@@ -36,6 +36,17 @@ const updateTask = ({ navigation }) => {
   const [desc, setDesc] = useState('');
   const [tag, setTag] = useState('');
   const [dt, setDt] = useState('Pick a Date for your Task');
+
+  const getData = () => {
+    setTitle(navigation.getParam('title'));
+    setDesc(navigation.getParam('dsc'));
+    setTag(navigation.getParam('tag'));
+    setDt(navigation.getParam('dt'));
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const update = async () => {
     console.log(tag.value);
@@ -100,6 +111,7 @@ const updateTask = ({ navigation }) => {
                   onChangeText={(tag) => {
                     setTag(tag);
                   }}
+                  tag={tag}
                 />
 
                 <DateInputManager

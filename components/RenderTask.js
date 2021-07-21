@@ -14,7 +14,7 @@ const { TrashIcon, PinIcon } = Icons;
 const { textInput } = Texts;
 const { TaskInput } = ButtonStyles;
 
-const RenderTask = ({ item, index, show, setShow, nav }) => {
+const RenderTask = ({ navigation, item, index, show, setShow }) => {
   const setColorPinIcon = (index) => {
     let newArr = [...show];
 
@@ -37,7 +37,7 @@ const RenderTask = ({ item, index, show, setShow, nav }) => {
   // };
 
   const deleTask = async () => {
-    const info = await deleteTask(item.id);
+    await deleteTask(item.id);
 
     const res = getRes();
 
@@ -50,6 +50,10 @@ const RenderTask = ({ item, index, show, setShow, nav }) => {
     }
   };
 
+  const goToUpdateTask = () => {
+    navigation.navigate('UpdateTask', item);
+  };
+
   return (
     <ScrollView>
       <View>
@@ -57,7 +61,7 @@ const RenderTask = ({ item, index, show, setShow, nav }) => {
           <Ionicons onPress={() => setColorPinIcon(index)} color={item.color} name="pin-sharp" size={35} />
         </TouchableOpacity>
 
-        <TouchableOpacity style={TaskInput}>
+        <TouchableOpacity onPress={goToUpdateTask} style={TaskInput}>
           <TextInput value={item.title} editable={false} style={textInput} keyboardType="default"></TextInput>
         </TouchableOpacity>
 

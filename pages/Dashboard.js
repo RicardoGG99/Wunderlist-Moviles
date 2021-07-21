@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { TouchableHighlight, Text, View, RefreshControl, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
+// import { Formik } from 'formik';
+// import { SearchBar } from 'react-native-elements';
 
 //Fetch
 import { getRes } from '../connectionToBack/setGetRes';
@@ -28,26 +30,6 @@ const { InputLabel, textInput } = Texts;
 const { TrashIcon, PinIcon } = Icons;
 
 const Dashboard = ({ navigation }) => {
-  const FlatListData = [
-    {
-      title: 'Release my new album',
-      id: 1,
-      color: '#9CA3AF',
-    },
-
-    {
-      title: 'Record smt',
-      id: 2,
-      color: '#9CA3AF',
-    },
-
-    {
-      title: 'Practice piano',
-      id: 3,
-      color: '#9CA3AF',
-    },
-  ];
-
   const loadTasks = async () => {
     const data = await getTasksFetch();
     console.log('las tareas: ' + JSON.stringify(data));
@@ -82,10 +64,6 @@ const Dashboard = ({ navigation }) => {
     navigation.navigate('Dashboard');
   };
 
-  const goToUpdateTask = () => {
-    navigation.navigate('updateTask');
-  };
-
   const goToCreateTask = () => {
     navigation.navigate('CreateTask');
   };
@@ -96,7 +74,7 @@ const Dashboard = ({ navigation }) => {
 
   //Render Flatlist Items
   const renderItem = ({ item, index }) => {
-    return <RenderTask nav={navigation} item={item} index={index} show={show} setShow={setShow} />;
+    return <RenderTask navigation={navigation} item={item} index={index} show={show} setShow={setShow} />;
   };
 
   return (
@@ -135,6 +113,28 @@ const Dashboard = ({ navigation }) => {
         </View>
       </TouchableHighlight> */}
     </View>
+
+    // <Formik
+    //     initialValues={{ search: '' }}
+    //     onSubmit={(values) => {
+    //       console.log(values);
+    //     }}
+    //   >
+    //     {({ handleChange, handleBlur, handleSubmit, values }) => (
+    //       <SearchBar
+    //         placeholder="Filter your Tasks"
+    //         placeholderTextColor="#9CA3AF"
+    //         onChangeText={handleChange(search)}
+    //         onBlur={handleBlur('search')}
+    //         value={values.search}
+    //         keyboardType="default"
+    //         onChangeText={(search) => {
+    //           setSearch(search);
+    //         }}
+    //         value={search}
+    //       />
+    //     )}
+    //   </Formik>
   );
 };
 

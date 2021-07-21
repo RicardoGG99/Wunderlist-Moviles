@@ -20,7 +20,7 @@ const updateTaskFetch = async (title, desc, tag, dt, id) => {
       body: JSON.stringify(body),
     };
 
-    return await fetch(`http://192.168.0.101:3000/task/${id}`, data)
+    return await fetch(`https://p2moviles.herokuapp.com/task/${id}`, data)
       .then((cat) => {
         if (cat.status == 200) {
           setRes('Success');

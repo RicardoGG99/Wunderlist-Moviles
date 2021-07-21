@@ -43,13 +43,13 @@ const SelectStyles = StyleSheet.create({
   },
 });
 
-const SelectInput = ({ label, onChangeText }) => {
+const SelectInput = ({ label, onChangeText, tag }) => {
   return (
     <View style={SelectStyles.SelectView}>
       <Text style={InputLabel}>{label}</Text>
       <ModalSelector
         cancelText="Cancel"
-        initValue="Select a Tag"
+        initValue={tag}
         data={options}
         onChange={onChangeText}
         closeOnChange={true}
