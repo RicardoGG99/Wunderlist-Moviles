@@ -11,7 +11,7 @@ const data = {
 };
 
 const deleteTaskFetch = async (item) => {
-  const res = await fetch(`http://192.168.0.101:3000/task/${item}`, data).then((dog) => {
+  const res = await fetch(`https://p2moviles.herokuapp.com/task/${item}`, data).then((dog) => {
     if (dog.status == 200) {
       setRes('Success');
     } else {
