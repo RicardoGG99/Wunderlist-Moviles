@@ -1,16 +1,16 @@
 import { setRes } from './setGetRes';
 
-const updateTaskFetch = async (title, desc, tag, dt, id) => {
+const updateTaskFetch = async (title, dsc, tag, dt, id) => {
   try {
     const body = {
       title: title,
-      desc: desc,
+      dsc: dsc,
       tag: tag,
       dt: dt,
     };
 
     const data = {
-      method: 'POST',
+      method: 'PUT',
       mode: 'cors',
       credentials: 'include',
       headers: {
@@ -20,7 +20,8 @@ const updateTaskFetch = async (title, desc, tag, dt, id) => {
       body: JSON.stringify(body),
     };
 
-    return await fetch(`https://p2moviles.herokuapp.com/task/${id}`, data)
+    return await fetch(`http://192.168.0.101:3000/task/${id}`, data)
+      .then(console.log(data))
       .then((cat) => {
         if (cat.status == 200) {
           setRes('Success');

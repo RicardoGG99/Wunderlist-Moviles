@@ -43,13 +43,12 @@ const SelectStyles = StyleSheet.create({
   },
 });
 
-const SelectInput = ({ label, onChangeText, tag }) => {
+const SelectInput = ({ label, onChangeText, ...props }) => {
   return (
     <View style={SelectStyles.SelectView}>
       <Text style={InputLabel}>{label}</Text>
       <ModalSelector
         cancelText="Cancel"
-        initValue={tag}
         data={options}
         onChange={onChangeText}
         closeOnChange={true}
@@ -57,6 +56,7 @@ const SelectInput = ({ label, onChangeText, tag }) => {
         optionStyle={SelectStyles.SelectText}
         initValueTextStyle={SelectStyles.SelectInitialText}
         selectedItemTextStyle={SelectStyles.SelectedItemTextStyle}
+        {...props}
       />
     </View>
   );

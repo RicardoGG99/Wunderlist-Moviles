@@ -11,7 +11,7 @@ const data = {
 };
 
 const getTasksByIdFetch = async (item) => {
-  const res = await fetch(`https://p2moviles.herokuapp.com/tasks/${item}`, data);
+  const res = await fetch(`http://192.168.0.101:3000/tasks/${item}`, data);
   return await res.json();
 };
 

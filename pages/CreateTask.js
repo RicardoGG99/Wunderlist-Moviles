@@ -53,6 +53,8 @@ const createTask = ({ navigation }) => {
     }
   };
 
+  // const tagText = 'Select the level of importance';
+
   return (
     <ScrollView>
       <View style={WrapContainer}>
@@ -100,6 +102,7 @@ const createTask = ({ navigation }) => {
                   onChangeText={(tag) => {
                     setTag(tag);
                   }}
+                  initValue="Select the Level of Importance"
                 />
 
                 <DateInputManager

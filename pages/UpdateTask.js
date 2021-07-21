@@ -30,18 +30,21 @@ const { MessageBox, ExtraText, TextLink, TextLinkContent } = Texts;
 const { SignButton, SignButtonText } = ButtonStyles;
 
 const updateTask = ({ navigation }) => {
+  let tagHelper = '';
   //useState
 
   const [title, setTitle] = useState('');
-  const [desc, setDesc] = useState('');
+  const [dsc, setDsc] = useState('');
   const [tag, setTag] = useState('');
   const [dt, setDt] = useState('Pick a Date for your Task');
 
   const getData = () => {
     setTitle(navigation.getParam('title'));
-    setDesc(navigation.getParam('dsc'));
+    setDsc(navigation.getParam('dsc'));
     setTag(navigation.getParam('tag'));
     setDt(navigation.getParam('dt'));
+
+    tagHelper = tag;
   };
 
   useEffect(() => {
@@ -49,16 +52,20 @@ const updateTask = ({ navigation }) => {
   }, []);
 
   const update = async () => {
-    console.log(tag.value);
-    await updateTaskFetch(title, desc, tag.value, dt);
+    const id = navigation.getParam('id');
+
+    await updateTaskFetch(title, dsc, tag.value, dt, id);
+    console.log(title, dsc, tag.value, dt, id);
+    console.log(id);
     const response = getRes();
-    console.log('El tag: ' + tag.value);
+    console.log(response);
+
     if (response == 'Success') {
       alert(' Task Updated successfully');
     } else {
-      alert('Error Creating the task');
+      alert('Error Updating the task');
       setTitle('');
-      setDesc('');
+      setDsc('');
       setTag('');
       setDt('Pick a Date for your Task');
     }
@@ -74,7 +81,7 @@ const updateTask = ({ navigation }) => {
           <Text style={SubTitle}> Update your Task </Text>
 
           <Formik
-            initialValues={{ title: '', desc: '', tag: '', dt: '' }}
+            initialValues={{ title: '', dsc: '', tag: '', dt: '' }}
             onSubmit={(values) => {
               console.log(values);
             }}
@@ -97,12 +104,12 @@ const updateTask = ({ navigation }) => {
                 />
 
                 <DescriptionArea
-                  onChangeText={handleChange('desc')}
-                  onBlur={handleBlur('desc')}
-                  value={values.desc}
+                  onChangeText={handleChange('dsc')}
+                  onBlur={handleBlur('dsc')}
+                  value={values.dsc}
                   keyboardType="default"
-                  onChangeText={(desc) => setDesc(desc)}
-                  value={desc}
+                  onChangeText={(dsc) => setDsc(dsc)}
+                  value={dsc}
                 />
 
                 <SelectInput
@@ -111,7 +118,6 @@ const updateTask = ({ navigation }) => {
                   onChangeText={(tag) => {
                     setTag(tag);
                   }}
-                  tag={tag}
                 />
 
                 <DateInputManager
