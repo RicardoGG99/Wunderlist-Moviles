@@ -40,7 +40,7 @@ const Dashboard = ({ navigation }) => {
 
   useEffect(() => {
     loadTasks();
-  }, []);
+  });
 
   //Redirects
   const logIn = () => {

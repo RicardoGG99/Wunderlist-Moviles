@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TouchableOpacity, View, Image, Text, ScrollView } from 'react-native';
+import { TouchableOpacity, View, Image, Text, TextInput, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Formik } from 'formik';
 import { getRes } from '../connectionToBack/setGetRes';
@@ -16,7 +16,6 @@ import { Views } from '../styles/views';
 import IconInputManager from '../components/IconInputManager';
 import SelectInput from '../components/SelectInput';
 import DateInputManager from '../components/DateInputManager';
-import DescriptionArea from '../components/DescriptionArea';
 
 //Fetch
 import updateTaskFetch from '../connectionToBack/updateTaskFetch';
@@ -30,21 +29,17 @@ const { MessageBox, ExtraText, TextLink, TextLinkContent } = Texts;
 const { SignButton, SignButtonText } = ButtonStyles;
 
 const updateTask = ({ navigation }) => {
-  let tagHelper = '';
   //useState
-
   const [title, setTitle] = useState('');
-  const [dsc, setDsc] = useState('');
+  const [desc, setDesc] = useState('');
   const [tag, setTag] = useState('');
-  const [dt, setDt] = useState('Pick a Date for your Task');
+  const [dt, setDt] = useState('');
 
   const getData = () => {
     setTitle(navigation.getParam('title'));
-    setDsc(navigation.getParam('dsc'));
+    setDesc(navigation.getParam('dsc'));
     setTag(navigation.getParam('tag'));
     setDt(navigation.getParam('dt'));
-
-    tagHelper = tag;
   };
 
   useEffect(() => {
@@ -54,18 +49,21 @@ const updateTask = ({ navigation }) => {
   const update = async () => {
     const id = navigation.getParam('id');
 
-    await updateTaskFetch(title, dsc, tag.value, dt, id);
-    console.log(title, dsc, tag.value, dt, id);
-    console.log(id);
+    await updateTaskFetch(title, desc, tag.value, dt, id);
+    console.log(title, desc, tag.value, dt, id);
     const response = getRes();
-    console.log(response);
 
     if (response == 'Success') {
       alert(' Task Updated successfully');
+      setTitle('');
+      setDesc('');
+      setTag('');
+      setDt('Pick a Date for your Task');
+      navigation.navigate('Dashoard');
     } else {
       alert('Error Updating the task');
       setTitle('');
-      setDsc('');
+      setDesc('');
       setTag('');
       setDt('Pick a Date for your Task');
     }
@@ -81,7 +79,7 @@ const updateTask = ({ navigation }) => {
           <Text style={SubTitle}> Update your Task </Text>
 
           <Formik
-            initialValues={{ title: '', dsc: '', tag: '', dt: '' }}
+            initialValues={{ title: '', desc: '', tag: '', dt: '' }}
             onSubmit={(values) => {
               console.log(values);
             }}
@@ -103,13 +101,17 @@ const updateTask = ({ navigation }) => {
                   value={title}
                 />
 
-                <DescriptionArea
-                  onChangeText={handleChange('dsc')}
-                  onBlur={handleBlur('dsc')}
-                  value={values.dsc}
+                <IconInputManager
+                  label="Description"
+                  icon="clipboard"
+                  placeholder="Description"
+                  placeholderTextColor="#9CA3AF"
+                  onChangeText={handleChange('desc')}
+                  onBlur={handleBlur('desc')}
+                  value={values.desc}
                   keyboardType="default"
-                  onChangeText={(dsc) => setDsc(dsc)}
-                  value={dsc}
+                  onChangeText={(desc) => setDesc(desc)}
+                  value={desc}
                 />
 
                 <SelectInput

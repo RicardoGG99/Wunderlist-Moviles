@@ -44,6 +44,12 @@ const createTask = ({ navigation }) => {
     console.log('El tag: ' + tag.value);
     if (response == 'Success') {
       alert(' Task Created successfully');
+      setTitle('');
+      setDesc('');
+      setTag('');
+      setDt('Pick a Date for your Task');
+      navigation.navigate('Dashboard');
+      navigation.navigate('Dashboard');
     } else {
       alert('Error Creating the task');
       setTitle('');
